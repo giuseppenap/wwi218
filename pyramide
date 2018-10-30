@@ -1,0 +1,48 @@
+import stanford.karel.*;
+
+// Goal: Build a Pyramid which spans the complete width of the playing field.
+public class PyramidKarel extends Karel {
+
+	public void run() {
+		int i = 0;
+
+		putBeeper();
+
+		while (true) {
+			move();
+			if (frontIsBlocked()) {
+				putBeeper();
+				break;
+			}
+			if (!beepersPresent()) {
+				putBeeper();
+			}
+		}
+		turnLeft();
+		turnLeft();
+		while (true) {
+			if (frontIsClear()) {
+				move();
+			} else {
+				break;
+			}
+		}
+		i++;
+		System.out.println(i);
+		turnLeft();
+		turnLeft();
+		turnLeft();
+		while (true) {
+			move();
+			while (true) {
+				if (!facingEast()) {
+					turnLeft();
+				}
+				for (int x = 1; x >= i; x++) {
+					move();
+				}
+			}
+		}
+	}
+
+}
